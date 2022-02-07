@@ -20,7 +20,7 @@ public class MemberMenu {
 		int choice; //번호 선택용 변수
 		do {
 			
-			System.out.println("\n*****회원관리프로그램*****");
+			System.out.println("\n***** 회원 관리 프로그램 *****");
 			System.out.println("1. 회원 전체 조회");
 			System.out.println("2. 회원 아이디 조회");
 			System.out.println("3. 회원 이름 조회");
@@ -41,11 +41,14 @@ public class MemberMenu {
 			case 3:
 				mController.selectOne1(inputUserName());
 				break;
-			case 4: 
+			case 4:
+				mController.insertMember(inputMember());
 				break;
-			case 5: 
+			case 5:
+				mController.updateMember(updateMember());
 				break;
-			case 6: 
+			case 6:
+				mController.deleteMember(inputMemberId());
 				break;
 			case 9: 
 				System.out.println("정말로 끝내시겠습니까? (Y/N)");
@@ -60,6 +63,55 @@ public class MemberMenu {
 			
 		}while(true);
 		
+	}
+
+	private Member updateMember() {
+		Member m = new Member();
+		
+		m.setUserId(inputMemberId());
+		
+		System.out.println("암호 : ");
+		m.setPassword(sc.next());
+		
+		System.out.println("이메일 : ");
+		m.setEmail(sc.next());
+		
+		System.out.println("전화번호(-빼고) : ");
+		m.setPhone(sc.next());
+		
+		System.out.println("주소 : ");
+		sc.nextLine(); //버퍼 비우기
+		m.setAddress(sc.nextLine());
+		
+		//총 4가지 값 변경 가능한걸로 정했음
+		return m;
+	}
+
+	private Member inputMember() {
+		
+		Member m = new Member();
+		System.out.println("새로운 회원정보를 입력하세요 >>");
+		System.out.println("아이디 : ");
+		m.setUserId(sc.next());
+		System.out.println("암호 : ");
+		m.setPassword(sc.next());
+		System.out.println("이름 : ");
+		m.setUserName(sc.next());
+		System.out.println("나이 : ");
+		m.setAge(sc.nextInt());
+		System.out.println("성별(M/F) : ");
+		m.setGender(sc.next().toUpperCase());
+		System.out.println("이메일 : ");
+		m.setEmail(sc.next());
+		System.out.println("전화번호(-빼고) : ");
+		m.setPhone(sc.next());
+		System.out.println("주소 : ");
+		sc.nextLine(); //버퍼 비우기
+		m.setAddress(sc.nextLine());
+		System.out.println("취미(,로 공백없이 입력 : ");
+		m.setHobby(sc.next());
+
+		return m;
 	}
 
 	private String inputUserName() {
@@ -98,6 +150,12 @@ public class MemberMenu {
 		System.out.println("----------------------------------------------------------");
 		
 		System.out.println(m);
+	}
+
+	//컨트롤러 2.
+	public void displaySuccess(String message) {
+		System.out.println("서비스 요청 결과 : " + message);
+		
 	}
 
 }

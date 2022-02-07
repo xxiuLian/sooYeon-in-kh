@@ -47,4 +47,42 @@ public class MemberController {
 		
 	}
 
+	public void insertMember(Member m) {
+		//1.
+		int result = new MemberDao().insertMember(m);
+		
+		//2.
+		if(result > 0) {
+			new MemberMenu().displaySuccess("회원 가입 성공");
+		}else {
+			new MemberMenu().displayError("회원 가입 실패");
+		}
+		
+	}
+
+	public void updateMember(Member m) {
+		//1.
+		int result = new MemberDao().updateMember(m);
+		
+		//2.
+		if(result > 0) {
+			new MemberMenu().displaySuccess("회원 수정 성공");
+		}else {
+			new MemberMenu().displayError("회원 수정 실패");
+		}
+		
+		
+	}
+
+	public void deleteMember(String userId) {
+		int result = new MemberDao().deleteMember(userId);
+		
+		if(result > 0) {
+			new MemberMenu().displaySuccess("회원 삭제 성공");
+		}else {
+			new MemberMenu().displayError("회원 삭제 실패");
+		}
+		
+	}
+
 }
